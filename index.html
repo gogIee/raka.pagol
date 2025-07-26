@@ -3,50 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Surprise Animation</title>
+  <title>Surprise Raka Pagol</title>
   <style>
     body {
-      background-color: #0f0f1a;
+      background-color: #0d0d1a;
       color: #fff;
       font-family: 'Poppins', sans-serif;
       text-align: center;
-      padding-top: 100px;
+      padding: 60px 20px;
     }
 
     button {
       padding: 15px 30px;
-      font-size: 20px;
+      font-size: 22px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       background: linear-gradient(45deg, #ff0066, #ffcc00);
       color: #fff;
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
+      transition: transform 0.2s ease;
     }
 
     button:hover {
       transform: scale(1.1);
     }
 
-    #surpriseText {
-      margin-top: 50px;
-      font-size: 50px;
+    .text-container {
+      margin-top: 40px;
+    }
+
+    .raka-text {
+      font-size: 45px;
       font-weight: bold;
       color: #00f2ff;
       opacity: 0;
-      animation: reveal 2s ease forwards;
-      display: none;
+      animation: reveal 1.2s ease forwards;
     }
 
     @keyframes reveal {
       0% {
         opacity: 0;
-        transform: scale(0.5) rotate(-180deg);
+        transform: scale(0.3) rotate(-360deg);
       }
       60% {
-        transform: scale(1.2) rotate(20deg);
         opacity: 1;
+        transform: scale(1.3) rotate(20deg);
       }
       100% {
         transform: scale(1) rotate(0deg);
@@ -56,14 +58,25 @@
 </head>
 <body>
 
-  <button onclick="showText()">🎁 Surprise</button>
-  <div id="surpriseText">Raka Pagol</div>
+  <button onclick="showRaka()">🎁 Surprise</button>
+  <div class="text-container" id="textContainer"></div>
 
   <script>
-    function showText() {
-      const text = document.getElementById('surpriseText');
-      text.style.display = 'block';
-      text.style.animation = 'reveal 1.5s ease forwards';
+    function showRaka() {
+      // Create text
+      const text = document.createElement('div');
+      text.className = 'raka-text';
+      text.textContent = 'Raka Pagol';
+
+      // Append to container
+      document.getElementById('textContainer').appendChild(text);
+
+      // Speak "Raka Pagol"
+      const speech = new SpeechSynthesisUtterance('Raka Pagol');
+      speech.lang = 'en-US';
+      speech.pitch = 1;
+      speech.rate = 1;
+      window.speechSynthesis.speak(speech);
     }
   </script>
 
