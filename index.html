@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,7 +10,7 @@
       color: #fff;
       font-family: 'Poppins', sans-serif;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 50px;
       overflow-x: hidden;
     }
 
@@ -39,6 +39,20 @@
       margin-top: 20px;
     }
 
+    .dialogBox {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #1a1a2e;
+      border: 2px solid #00c8ff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.6;
+      animation: fadeIn 1s ease;
+    }
+
     @keyframes reveal {
       0% {
         opacity: 0;
@@ -52,6 +66,11 @@
         transform: scale(1) rotate(0deg);
       }
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -59,7 +78,7 @@
   <button onclick="showRaka()">🎁 Surprise</button>
   <div id="container"></div>
 
-  <!-- Audio tag -->
+  <!-- Audio file -->
   <audio id="rakaSound" src="raka-pagol.m4a" preload="auto"></audio>
 
   <script>
@@ -72,9 +91,28 @@
       text.innerText = "Raka Pagol";
       container.appendChild(text);
 
-      // Clone the sound and play it (multiple sounds at once possible)
+      // Play sound
       const sound = document.getElementById("rakaSound").cloneNode();
       sound.play();
+
+      // Create app-style dialog box
+      const dialog = document.createElement("div");
+      dialog.className = "dialogBox";
+      dialog.innerHTML = `
+        📱 <strong>রাকা অ্যাপ</strong><br><br>
+        🔔 <strong>নোটিফিকেশন:</strong> রাকা নিজেই স্বীকার করলো যে সে পাগল।<br><br>
+        🧠 <strong>তথ্য আপডেট:</strong><br>
+        ❝ হ্যাঁ, আমি রাকা। আমি নিজেই স্বীকার করছি — আমি একেবারে পাগল টাইপের মানুষ। ❞<br><br>
+        📢 <strong>ইউজার কমেন্টস:</strong><br>
+        - "এইটা তো সবাই জানত রে ভাই!" – টুটুল<br>
+        - "ধন্যবাদ, রাকা, সাহসী স্বীকারোক্তি!" – সজল<br>
+        - "পাগল না, মহাপাগল!" – অজানা<br><br>
+        🛠 <strong>ফিচার আপডেট:</strong><br>
+        ✅ নিজেই নিজের বদনাম করার সিস্টেম<br>
+        ✅ দিনে ৩ বার “আমি পাগল” বলা যায়<br>
+        ✅ রাকা মোড: একবার অন করলে পাগলামির লেভেল বাড়ে ১০০%!
+      `;
+      container.appendChild(dialog);
     }
   </script>
 
