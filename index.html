@@ -59,8 +59,8 @@
   <button onclick="showRaka()">🎁 Surprise</button>
   <div id="container"></div>
 
-  <!-- Sound file (Your uploaded file) -->
-  <audio id="rakaSound" src="রাকা পাগল.m4a"></audio>
+  <!-- Audio tag -->
+  <audio id="rakaSound" src="raka-pagol.m4a" preload="auto"></audio>
 
   <script>
     function showRaka() {
@@ -72,9 +72,8 @@
       text.innerText = "Raka Pagol";
       container.appendChild(text);
 
-      // Play sound
-      const sound = document.getElementById("rakaSound");
-      sound.currentTime = 0;
+      // Clone the sound and play it (multiple sounds at once possible)
+      const sound = document.getElementById("rakaSound").cloneNode();
       sound.play();
     }
   </script>
