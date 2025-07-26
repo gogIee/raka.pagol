@@ -3,52 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Surprise Raka Pagol</title>
+  <title>Surprise Raka</title>
   <style>
     body {
-      background-color: #0d0d1a;
+      background-color: #0f0f1a;
       color: #fff;
       font-family: 'Poppins', sans-serif;
       text-align: center;
-      padding: 60px 20px;
+      padding-top: 100px;
+      overflow-x: hidden;
     }
 
     button {
       padding: 15px 30px;
-      font-size: 22px;
+      font-size: 20px;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       background: linear-gradient(45deg, #ff0066, #ffcc00);
       color: #fff;
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
+      transition: transform 0.3s ease;
     }
 
     button:hover {
       transform: scale(1.1);
     }
 
-    .text-container {
-      margin-top: 40px;
-    }
-
-    .raka-text {
-      font-size: 45px;
+    .rakaText {
+      font-size: 40px;
       font-weight: bold;
       color: #00f2ff;
       opacity: 0;
-      animation: reveal 1.2s ease forwards;
+      animation: reveal 1.5s ease forwards;
+      margin-top: 20px;
     }
 
     @keyframes reveal {
       0% {
         opacity: 0;
-        transform: scale(0.3) rotate(-360deg);
+        transform: scale(0.5) rotate(-180deg);
       }
       60% {
+        transform: scale(1.2) rotate(20deg);
         opacity: 1;
-        transform: scale(1.3) rotate(20deg);
       }
       100% {
         transform: scale(1) rotate(0deg);
@@ -59,24 +57,25 @@
 <body>
 
   <button onclick="showRaka()">🎁 Surprise</button>
-  <div class="text-container" id="textContainer"></div>
+  <div id="container"></div>
+
+  <!-- Sound file -->
+  <audio id="rakaSound" src="raka-pagol.mp3"></audio>
 
   <script>
     function showRaka() {
-      // Create text
-      const text = document.createElement('div');
-      text.className = 'raka-text';
-      text.textContent = 'Raka Pagol';
+      const container = document.getElementById("container");
 
-      // Append to container
-      document.getElementById('textContainer').appendChild(text);
+      // Create new text element
+      const text = document.createElement("div");
+      text.className = "rakaText";
+      text.innerText = "Raka Pagol";
+      container.appendChild(text);
 
-      // Speak "Raka Pagol"
-      const speech = new SpeechSynthesisUtterance('Raka Pagol');
-      speech.lang = 'en-US';
-      speech.pitch = 1;
-      speech.rate = 1;
-      window.speechSynthesis.speak(speech);
+      // Play sound
+      const sound = document.getElementById("rakaSound");
+      sound.currentTime = 0; // rewind
+      sound.play();
     }
   </script>
 
